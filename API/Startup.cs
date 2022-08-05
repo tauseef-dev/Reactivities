@@ -69,9 +69,9 @@ namespace API
             //     });
             // });
 
-            // services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddMediatR(typeof(List.Handler).Assembly);
 
-            // services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
             services.AddApplicationServices(_config);
 

@@ -9,6 +9,7 @@ using Domain;
 using MediatR;
 using Application.Activities;
 using Microsoft.AspNetCore.Authorization;
+using Application.Core;
 // using Application.Activities;
 
 
@@ -16,52 +17,17 @@ namespace API.Controllers
 {
     public class ActivitiesController : BaseApiController
     {
-        // private readonly DataContext _context;
-        // public IMediator _mediator { get; }
-        // public ActivitiesController(IMediator mediator)
-        // {
-        //     _mediator = mediator;
-        //     // _context = context;
-        // }
 
         [HttpGet]
-        public async Task<IActionResult> GetActivities()
+        public async Task<IActionResult> GetActivities([FromQuery]PagingParams param)
         {
-            // return await Mediator.Send(new List.Query());
-            return HandleResult(await Mediator.Send(new List.Query()));
+            return HandleResult(await Mediator.Send(new List.Query{Params = param}));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetActivity(Guid id)
         {
-            // var activity = await Mediator.Send(new Details.Query { Id = id });
-
-            // if (activity == null)
-            // {
-            //     return NotFound();
-            // }
-
-            // return activity;
-
-            // return await Mediator.Send(new Details.Query { Id = id });
-
-            // var result = await Mediator.Send(new Details.Query { Id = id });
-
-            // if (result.IsSuccess && result.Value != null)
-            // {
-            //     return Ok(result.Value);
-            // }
-            // if(result.IsSuccess && result.Value == null)
-            // {
-            //     return NotFound();
-            // }
-            // return BadRequest(result.Error);
-
-            // return HandleResult(result);
-
             return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
-
-
         }
 
         [HttpPost]
